@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+    
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SBI SimplyCLICK Credit Card</title>
+    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+    <link rel="stylesheet" href="styles.css">
+
+</head>
+
+<body>
+
+    <div class="card-wrapper">
+
+        <input type="checkbox" id="card-flip-toggle">
+        
+        <label for="card-flip-toggle" class="card-container" title="Click to flip card">
+            
+            <div class="credit-card">
+                
+                <!--  FRONT SIDE -->
+                <div class="card-side front">
+                    
+                    <!-- Top Section: SBI Logo + SimplyCLICK badge -->
+                    <div class="card-header">
+                        <div class="sbi-branding">
+                            <!-- Custom SBI Keyhole Logo created entirely with CSS -->
+                            <div class="sbi-keyhole-logo"></div>
+                            <span class="bank-name">SBI Card</span>
+                        </div>
+                        <span class="card-variant">SimplyCLICK</span>
+                    </div>
+
+                    <!-- Middle Upper Section: EMV Chip + Contactless Wi-Fi Symbol -->
+                    <div class="chip-container">
+                        <div class="chip"></div>
+                        <i class="fa-solid fa-wifi contactless-icon"></i>
+                    </div>
+
+                    <!-- Middle Section: 16-Digit Card Number -->
+                    <div class="card-number">
+                        <span>4532</span>
+                        <span>8912</span>
+                        <span>3456</span>
+                        <span>7890</span>
+                    </div>
+
+                    <!-- Bottom Section: Card Holder Name, Expiry Date, Visa Logo -->
+                    <div class="card-footer">
+                        <div class="card-holder">
+                            <span class="label">CARD HOLDER</span>
+                            <span class="value">AKKI SAI KUMAR REDDY</span>
+                        </div>
+
+                        <div class="expires">
+                            <span class="label">VALID THRU</span>
+                            <span class="value">09/28</span>
+                        </div>
+
+                        <i class="fa-brands fa-cc-visa visa-logo"></i>
+                    </div>
+                </div>
+
+
+                <!--  BACK SIDE  -->
+                <div class="card-side back">
+                    
+                    <!-- Black Magnetic Band across the top -->
+                    <div class="magnetic-strip"></div>
+
+                    <!-- Signature Area + CVV Number Box -->
+                    <div class="signature-section">
+                        <div class="signature-strip">
+                            <span>ASKR Signature</span>
+                        </div>
+                        <div class="cvv-box">
+                            <span class="cvv-label">CVV</span>
+                            <span class="cvv-value">842</span>
+                        </div>
+                    </div>
+
+                    <!-- Bottom Footer: Customer Care Text + Visa Brand Logo -->
+                    <div class="back-footer">
+                        <p class="disclaimer">
+                            This card is property of SBI Cards & Payment Services Ltd. If found, please return to any State Bank of India branch or contact helpline at 1860 180 1290.
+                        </p>
+                        <i class="fa-brands fa-cc-visa visa-logo-small"></i>
+                    </div>
+                </div>
+
+            </div>
+        </label>
+        
+        
+        <p class="flip-hint"><i class="fa-solid fa-rotate"></i> Click card to flip</p>
+    </div>
+
+</body>
+
+</html>

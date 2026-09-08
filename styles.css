@@ -1,0 +1,285 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box; /* Ensures padding & borders don't increase element width */
+    font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+}
+
+body {
+    background-color: #0b1329; /* Dark navy page background */
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center; /* Centers everything dead-center on screen */
+    padding: 20px;
+}
+
+.card-wrapper {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 20px;
+}
+
+/* Hide the actual HTML checkbox button so only the visual card is visible */
+#card-flip-toggle {
+    display: none;
+}
+
+
+.card-container {
+    width: 380px;
+    height: 240px;
+    perspective: 1000px; /* Gives depth to the 3D rotation (makes it look like real 3D space) */
+    cursor: pointer;
+    display: block;
+}
+
+/* --- INNER CARD CONTAINER (HOLDS BOTH SIDES) --- */
+.credit-card {
+    width: 100%;
+    height: 100%;
+    position: relative;
+    transform-style: preserve-3d; /* Required so child elements keep their 3D position */
+    transition: transform 0.8s cubic-bezier(0.175, 0.885, 0.32, 1.275); /* Smooth spring-like flip animation */
+}
+
+/* 
+    PURE CSS FLIP MECHANISM:
+    When the hidden checkbox is :checked, target the .credit-card and rotate it 180 degrees around Y-axis.
+*/
+#card-flip-toggle:checked + .card-container .credit-card {
+    transform: rotateY(180deg);
+}
+
+/* --- COMMON STYLES FOR BOTH SIDES --- */
+.card-side {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    border-radius: 16px;
+    backface-visibility: hidden; /* Hides the back face when looking at the front, and vice-versa */
+    overflow: hidden;
+    border: 1px solid rgba(255, 255, 255, 0.15); /* Glass-like border outline */
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.6); /* Soft elevation drop shadow */
+}
+
+/* --- FRONT SIDE DESIGN --- */
+.front {
+    /* Gradient matching SBI's blue theme */
+    background: linear-gradient(135deg, #001f3f 0%, #0056b3 50%, #00a8cc 100%);
+    color: #ffffff;
+    padding: 22px 24px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between; /* Spacing out top, middle, and bottom content evenly */
+}
+
+.card-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.sbi-branding {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+/* --- PURE CSS SBI KEYHOLE LOGO --- */
+.sbi-keyhole-logo {
+    width: 22px;
+    height: 22px;
+    background: #00bcd4; /* SBI Cyan circle */
+    border-radius: 50%;
+    position: relative;
+}
+
+/* Inner keyhole circle cutout */
+.sbi-keyhole-logo::after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 8px;
+    height: 8px;
+    background-color: #001f3f; /* Matches background to look transparent */
+    border-radius: 50%;
+}
+
+/* Vertical keyhole line cutout */
+.sbi-keyhole-logo::before {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 3px;
+    height: 9px;
+    background-color: #001f3f;
+}
+
+.bank-name {
+    font-size: 16px;
+    font-weight: 800;
+    letter-spacing: 1px;
+    color: #ffffff;
+}
+
+.card-variant {
+    font-size: 11px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 1.5px;
+    color: #00e5ff;
+    background: rgba(0, 0, 0, 0.2);
+    padding: 4px 8px;
+    border-radius: 4px;
+}
+
+/* --- CHIP & CONTACTLESS --- */
+.chip-container {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+}
+
+.chip {
+    width: 45px;
+    height: 34px;
+    background: linear-gradient(135deg, #ffe066 0%, #d4af37 100%); /* Gold metallic gradient */
+    border-radius: 6px;
+    border: 1px solid #b38f00;
+}
+
+.contactless-icon {
+    font-size: 20px;
+    color: #80d8ff;
+    transform: rotate(90deg); /* Rotates icon sideways to match bank contactless icon orientation */
+}
+
+.card-number {
+    font-size: 19px;
+    font-weight: 600;
+    letter-spacing: 3px;
+    color: #ffffff;
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.4); /* Creates embossed text depth */
+}
+
+/* --- FOOTER DETAILS --- */
+.card-footer {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+}
+
+.card-holder, .expires {
+    display: flex;
+    flex-direction: column;
+}
+
+.label {
+    font-size: 8px;
+    font-weight: 700;
+    color: #80d8ff;
+    letter-spacing: 1px;
+    margin-bottom: 2px;
+}
+
+.value {
+    font-size: 12px;
+    font-weight: 600;
+    letter-spacing: 1px;
+    color: #ffffff;
+}
+
+.visa-logo {
+    font-size: 34px;
+    color: #ffffff;
+}
+
+/* --- BACK SIDE DESIGN --- */
+.back {
+    background: linear-gradient(135deg, #001f3f 0%, #0b1329 100%);
+    color: #ffffff;
+    transform: rotateY(180deg); /* Pre-rotated 180 deg so it starts facing away */
+    padding-top: 24px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.magnetic-strip {
+    width: 100%;
+    height: 45px;
+    background: #111111;
+}
+
+.signature-section {
+    padding: 0 24px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.signature-strip {
+    flex-grow: 1; /* Takes up all available horizontal space */
+    height: 38px;
+    background: #ffffff;
+    border-radius: 4px;
+    display: flex;
+    align-items: center;
+    padding-left: 12px;
+    font-family: 'Brush Script MT', cursive, sans-serif; /* Cursive font mimicking handwriting */
+    color: #1e293b;
+    font-size: 16px;
+}
+
+.cvv-box {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.cvv-label {
+    font-size: 9px;
+    font-weight: 700;
+    color: #80d8ff;
+    margin-bottom: 2px;
+}
+
+.cvv-value {
+    background: #ffffff;
+    color: #0f172a;
+    padding: 6px 10px;
+    border-radius: 4px;
+    font-weight: 700;
+    font-size: 13px;
+}
+
+.back-footer {
+    padding: 0 24px 20px 24px;
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+}
+
+.disclaimer {
+    font-size: 8px;
+    color: #90a4ae;
+    max-width: 240px;
+    line-height: 1.3;
+}
+
+.visa-logo-small {
+    font-size: 26px;
+    color: #90a4ae;
+}
+
+.flip-hint {
+    color: #64748b;
+    font-size: 13px;
+    font-weight: 500;
+}
